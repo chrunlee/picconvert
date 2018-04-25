@@ -18,6 +18,8 @@ var app = express();
 
 app.use(cors());
 
+var status = require('./config/status');
+
 //log
 var logDirectory = path.join(__dirname, 'logs');
 
@@ -63,14 +65,10 @@ var token = require('./lib/token');
 app.use('/api/',function(req,res,next){
 	//检查token
 	var tokenStr = req.body.token;
-	console.log(tokenStr);
 	if(token.checkToken(tokenStr)){
 		next();
 	}else{
-		res.end(JSON.stringify({
-			code : '300',
-			msg : 'token验证不通过或过期'
-		}));
+		res.end(JSON.stringify(status[10001]));
 	}
 });
 

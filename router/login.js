@@ -21,7 +21,6 @@ Router.post('/',function(req,res,next){
 		if(err){
 			res.end(JSON.stringify(rs));
 		}else{
-			console.log(rst);
 			if(rst && rst.length > 0){
 				var user = rst[0];
 				//登录成功
