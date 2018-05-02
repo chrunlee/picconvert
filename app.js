@@ -77,6 +77,7 @@ app.use('/api',api);
 
 //404
 app.use(function(req,res,next){
+	console.log(req.url);
 	var err = new Error('file not found');
 	err.status = 404;
 	next(err);
@@ -87,6 +88,7 @@ app.use(function(err,req,res,next){
 	var status = err.status || 500;
 	//错误
 	var str = (new Date()).toISOString()+'\t'+err.toString()+'\n';
+	console.log(err);
 	fs.appendFileSync(path.join(__dirname,'logs','error.log'),str);
 	if(status == 404){
 		res.status(404).render('error/404');

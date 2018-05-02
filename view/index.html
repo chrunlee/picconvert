@@ -2,9 +2,36 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	{{ include './tpl/meta.html'}}
 	<title>图片压缩小工具</title>
+	<link rel="stylesheet" href="/plugins/byy/css/default/byy.css">
+	<link rel="stylesheet" href="/lib/index.css">
 </head>
-<body>
-	
+<body class="grey-bg">
+	{{ include './tpl/header.html' }}
+	<div class="container-fluid">
+		<div class="index-tip">
+			使用介绍：<br />
+			1.由于服务器空间较小，图上处理完成下载后会立即删除所有相关的文件。<br />
+			2.目前暂不支持批量处理，只能单个文件处理。<br />
+			3.图片最大不能超过10M，谢谢！<br />
+			4.图片上传后请尽快处理，5分钟后将自动删除。
+		</div>
+		
+		<div class="info-container byy-clear">
+			<div class="img-container">
+				
+			</div>
+			<div class="set-container">
+				
+			</div>	
+		</div>
+		<div class="byy-btn danger" style="width:40%;margin:0px 4%" id="upload">上传图片</div>
+		<div class="byy-btn " style="width:40%;margin:0px 4%;">下载图片</div>
+	</div>
+	{{ include './tpl/footer.html'}}
 </body>
 </html>
+<script type="text/javascript" src="/plugins/byy/byy.js"></script>
+<script type="text/javascript" src="/lib/index.js"></script>
+{{ include './tpl/tongji.html'}}
