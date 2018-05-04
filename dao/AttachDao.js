@@ -8,7 +8,9 @@ var sqls = {
 	uploadOne : 'insert into attach (filePath,ip,browser,createTime,filedel,type) values (?,?,?,?,?,?) ',
 	successOne : 'update attach set filedel=?,type=? where id=? ',
 	failOne : 'update attach set filedel=1,type=0 where id=? ',
-	getById : 'select * from attach where id=? '
+	getById : 'select * from attach where id=? ',
+	getLastData : 'select * from attach where createTime <= date_sub(now(),interval 5 minute) and filedel=0',
+	updateNewPath : 'update attach set targetPath=? where id=? '
 };
 
 module.exports = {
@@ -51,6 +53,26 @@ module.exports = {
 	 ***/
 	getById : function( id ){
 		var list = {sql : sqls.getById,params : [id]};
+		return query(list);
+	},
+	/***
+	 * 获得距离当前5分钟之前的未处理的数据，并将对应的数据清空
+	 **/
+	getLastData : function(){
+		var list = {
+			sql : sqls.getLastData,
+			params : []
+		};
+		return query(list);
+	},
+	/**
+	 * 更新新的文件路径
+	 ***/
+	updateNewPath : function(id,newPath){
+		var list = {
+			sql : sqls.updateNewPath,
+			params : [newPath,id]
+		};
 		return query(list);
 	}
 };

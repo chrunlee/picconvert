@@ -2,11 +2,14 @@
 /***首页样式***/
 
 footer{
-	position:fixed;
-	bottom:10px;
+	margin-top:20px;
 	width:100%;
 	font-size:14px;
 	color:#999;
+}
+footer.fixed{
+	position:fixed;
+	bottom:10px;
 }
 
 header{
@@ -30,16 +33,21 @@ header{
 }
 .img-container{
 	text-align:center;
+	border:1px solid #49e;
 }
 
 .img-container,.set-container{
 	width:40%;
 	float:left;
-	border:1px solid #49e;
 	height:300px;
 	margin:15px 4%;
 	border-radius:2px;
+	border-radius:10px;
 	background-color: white;
+}
+.set-container{
+	padding:20px;
+	box-sizing:border-box;
 }
 .img-container.upload{
 	border:none;

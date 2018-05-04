@@ -20,6 +20,9 @@ app.use(cors());
 
 var status = require('./config/status');
 
+//定时任务
+require('./lib/ScheduleJob');
+
 //log
 var logDirectory = path.join(__dirname, 'logs');
 

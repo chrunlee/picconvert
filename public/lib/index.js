@@ -23,28 +23,45 @@ var Index = function(){
 				}
 			}
 		});
+		//校验
+		var rules = {
+			rules : {
+				compress : {required : true,max : 100,min : 10,digits : true}
+			}
+		};
+		byy('.byy-form').validate(rules);
 		//下载图片
 		$('#download').on('click',download);
+		if($('footer').offset().top < $(window).height() - 30 ){
+			$('footer').addClass('fixed');
+		}
 	};
 	var download = function(){
 		var $img = $('.img-container img');
 		if($img.length > 0){
 			var id = $img.attr('id');
-			$.ajax({
-				url : '/download',
-				type : 'POST',
-				data : {id : id},
-				success : function(res){
-					var resobj = byy.json(res);
-					if(resobj && resobj.code === 10006){
-						window.open(resobj.url);
-						$('.img-container').removeClass('upload');
-						$('.img-container').html('');
-					}else{
-						byy.win.msg(resobj.msg);
+			if(byy('.byy-form').valid()){
+				var ldx = byy.win.load(1);
+
+				var formData = byy('.byy-form').getValues();
+				formData.id = id;
+				$.ajax({
+					url : '/download',
+					type : 'POST',
+					data : formData,
+					success : function(res){
+						byy.win.close(ldx);
+						var resobj = byy.json(res);
+						if(resobj && resobj.code === 10006){
+							window.open(resobj.url);
+							$('.img-container').removeClass('upload');
+							$('.img-container').html('');
+						}else{
+							byy.win.msg(resobj.msg);
+						}
 					}
-				}
-			});
+				});
+			}
 		}else{
 			byy.win.msg('请先上传图片后再进行下载');
 		}
@@ -64,7 +81,7 @@ var Index = function(){
 		start : start
 	};
 };
-byy.require(['jquery','uploader'],function(){
+byy.require(['jquery','uploader','validator'],function(){
 	var index = new Index();
 	index.start();
 })
