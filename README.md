@@ -5,7 +5,7 @@
 
 ```json
 {
-	"image":FileData,
+	"image":"FileData",
 	"compress":"80%",
 	"scale":"1700px"
 }

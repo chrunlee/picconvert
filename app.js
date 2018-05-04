@@ -18,7 +18,9 @@ var app = express();
 
 app.use(cors());
 
-var status = require('./config/status');
+
+var config = require('./config/config');
+var status = config.status;
 
 //定时任务
 require('./lib/ScheduleJob');
@@ -102,6 +104,6 @@ app.use(function(err,req,res,next){
 	}
 });
 
-app.listen(5500,function(){
-	console.log('running at 5500')
+app.listen(config.port,function(){
+	console.log('running at '+config.port)
 });

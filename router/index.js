@@ -11,7 +11,7 @@ var fs = require('fs');
 
 var attach = require('../dao/AttachDao');
 
-var status = require('../config/status');
+var {status} = require('../config/config');
 
 var Util = require('../lib/Util');
 
