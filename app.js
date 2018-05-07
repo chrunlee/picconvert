@@ -66,6 +66,9 @@ var login = require('./router/login');
 
 app.use('/login',login);
 
+var ip = require('./router/ip');
+app.use('/ip',ip);
+
 var token = require('./lib/token');
 app.use('/api/',function(req,res,next){
 	//检查token
